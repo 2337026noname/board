@@ -1,0 +1,11 @@
+{% extends 'frame.html' %}
+{% block content %}
+<div class="container mt-4">}
+    <h1>입력하기</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text">
+        <input type="submit" value="입력확인" class="btn btn-danger">
+    </form>
+</div>
+{% endblock %}

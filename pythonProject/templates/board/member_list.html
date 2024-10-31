@@ -1,0 +1,35 @@
+{% extends 'frame.html' %}
+
+{% block content %}
+<!--{% load static %}-->
+<!--<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">-->
+<div class="container mt-3">
+    <a href="{% url 'board:input' %}" class="btn btn-primary mb-3">입력하기</a>
+
+{% if member_list %}
+        {% for member in member_list %}
+            {% if forloop.first %}
+    <table class="table">
+        <tr class="table-dark">
+            <td>번호</td>
+            <td>이름</td>
+            <td colspan="2">처리</td>
+        </tr>
+            {% endif %}
+        <tr>
+            <td>{{ forloop.revcounter }}</td>
+            <td><a href="{% url 'board:detail' member.id %}">{{ member.name }}</a></td>
+            <td><a href="{% url 'board:editform' member.id %}">수정</a></td>
+            <td><a href="{% url 'board:delete' member.id %}">삭제</a></td>
+        </tr>
+        {% if forloop.last %}
+    </table>
+        {% endif %}
+    {% endfor %}
+
+{% else %}
+    <p>회원 데이터가 없습니다.</p>
+{% endif %}
+</div>
+
+{% endblock %}
